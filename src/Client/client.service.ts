@@ -1,19 +1,20 @@
-// //service é a camada entre a API e o BD
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma.service";
 
-// import { Injectable } from '@nestjs/common';
-// import { PrismaService } from 'src/prisma.service';
+@Injectable()
+export class FindClientByIdService {
+    constructor(private readonly database: PrismaService) {}
 
-// @Injectable()
-// export class ClientService {
-//     constructor(private readonly prismaService: PrismaService) {}
-
-//     async createClient(name : string, esporte : string){
-//         const client = await this.prismaService.client.create({
-//             data: {
-//                 name : name,
-//                 esporte : esporte,
-//             }
-//         });
-//         return client;
-//     }
-// }
+    async findClientById(id: string) {
+        const client = await this.database.client.findFirst({
+            where: {
+                id,
+            },
+            select: {
+                name: true,
+                sport: true,
+            },
+        });
+        return client;
+    }
+}

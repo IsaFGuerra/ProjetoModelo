@@ -1,6 +1,7 @@
 // import { Personal } from "@prisma/client";
 
-export interface createClientDTO {
+export interface ClientDTO {
+    id: any;
     name: string;
     sport: string;
 }
