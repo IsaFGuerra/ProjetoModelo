@@ -1,0 +1,28 @@
+// aqui é especificada a conexão com o BD e o esquema disso
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  sport  String
+  // personal Personal[]
+}
+
+// model Personal {
+//   id       String  @id @default(auto()) @map("_id") @db.ObjectId
+//   name     String
+//   cpf      String
+//   esporte  String
+//   Client   Client? @relation(fields: [clientId], references: [id])
+//   clientId String? @db.ObjectId
+// }
