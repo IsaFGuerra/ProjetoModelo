@@ -12,17 +12,17 @@ datasource db {
 }
 
 model Client {
-  id       String     @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  sport  String
-  // personal Personal[]
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  sport String
+  Personal   Personal? @relation(fields: [personalId], references: [id])
+  personalId String?   @db.ObjectId
 }
 
-// model Personal {
-//   id       String  @id @default(auto()) @map("_id") @db.ObjectId
-//   name     String
-//   cpf      String
-//   esporte  String
-//   Client   Client? @relation(fields: [clientId], references: [id])
-//   clientId String? @db.ObjectId
-// }
+model Personal {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  sport  String
+  cpf    String
+  client Client[]
+}

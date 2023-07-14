@@ -5,14 +5,13 @@ import { PrismaService } from "src/prisma.service";
 export class FindClientByIdService {
     constructor(private readonly database: PrismaService) {}
 
-    async findClientById(id: string) {
+    async findClientById(name: string) {
         const client = await this.database.client.findFirst({
             where: {
-                id,
+                name,
             },
             select: {
-                name: true,
-                sport: true,
+                id: true,
             },
         });
         return client;
