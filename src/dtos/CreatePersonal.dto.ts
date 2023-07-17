@@ -1,6 +1,6 @@
 export interface PersonalDTO{
-    id: any;
-    name: string;
+    clientId: string;
+    namePersonal: string;
     sport: string;
     cpf: string;
 }

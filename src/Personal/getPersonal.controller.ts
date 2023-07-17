@@ -7,8 +7,8 @@ export class GetPersonalController{
     constructor(private service: GetPersonalService){ }
 
     @Get()
-    async getPersonalController(@Query('id') id: string){
-        const client = this.service.getClientFromPersonal(id)
+    async getPersonalController(@Query('id') name: string){
+        const client = this.service.getClientFromPersonal(name)
         return client;
     }
 }

@@ -6,7 +6,7 @@ export class FindClientByIdService {
     constructor(private readonly database: PrismaService) {}
 
     async findClientById(name: string) {
-        const client = await this.database.client.findFirst({
+        const client = await this.database.client.findMany({
             where: {
                 name,
             },

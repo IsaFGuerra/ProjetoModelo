@@ -11,12 +11,14 @@ export class CreatePersonalController{
     async createPersonal(@Body() body: PersonalDTO){
         const personal = await this.prisma.personal.create({
             data:{
-                name: body.name,
+                namePersonal: body.namePersonal,
                 sport: body.sport,
                 cpf: body.cpf, 
                 client: {
-                    connect: body.id,
-                },
+                    connect: {
+                        id: body.clientId
+                    }
+                }
             },
         })
 

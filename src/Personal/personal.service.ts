@@ -5,14 +5,27 @@ import { PrismaService } from "src/prisma.service";
 export class GetPersonalService {
     constructor(private readonly database: PrismaService) { }
 
-    async getClientFromPersonal( id : string) {
-        const client = await this.database.personal.findMany({ //arrumar o findFirst
+    async getClientFromPersonal( namePersonal : string) {
+        const personal = await this.database.personal.findMany({ 
             where: {
-                id,
+                namePersonal: {
+                    equals: namePersonal
+                },
             },
-            select: {
-                name: true,
+            // select: {
+            //     client:{
+            //         name: true,
+            //     }
+            // }
+            include: {
+                client: {
+                    select: {
+                        name: true
+                    }
+                }
             }
-        })
+        });
+        console.log(personal)
+        return personal
     }
 }
