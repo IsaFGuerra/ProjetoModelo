@@ -13,10 +13,10 @@ export class CreateClientController {
 
     @Post()
     async createClient(@Body() body: ClientDTO) { //isso é pra receber as informações por parâmetro
+        // console.log('oi')
         const client = await this.prisma.client.create({
             data: {
                 name: body.name,
-                sport: body.sport,
             },
         });
 

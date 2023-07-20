@@ -6,14 +6,25 @@ export class FindClientByIdService {
     constructor(private readonly database: PrismaService) {}
 
     async findClientById(name: string) {
-        const client = await this.database.client.findMany({
+        const client = await this.database.client.findUnique({
             where: {
                 name,
             },
             select: {
-                id: true,
+                clientId: true,
             },
         });
-        return client;
+        return client.clientId;
+    }
+
+    async DeleteClientById(clientId: string){
+        const deleteClient = await this.database.client.delete({
+            where: {
+                clientId,
+            }
+        });
+        return {
+            message: 'excluido com sucesso',
+        }
     }
 }
