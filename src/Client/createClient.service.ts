@@ -19,7 +19,8 @@ export class ClientService {
 
     return {
       ...createdUser,
-      password: undefined,
+      password: 'senha secreta',
+      // password: undefined,
     };
   }
 

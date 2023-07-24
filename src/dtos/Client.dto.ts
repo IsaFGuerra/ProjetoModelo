@@ -22,44 +22,30 @@ const FormData = z.object({
 })
 export class ClientDTO {
     @ApiProperty({
-        description: 'Nome do Atleta',
+        description: 'Id do cliente',
+        type: String,
+        required: false,
+    })
+    clientId: string;
+
+    @ApiProperty({
+        description: 'Nome do cliente',
         type: String,
         required: true,
     })
     name: string;
 
     @ApiProperty({
-        description: 'Nome do Atleta',
+        description: 'email do cliente',
+        type: String,
+        required: true,
+    })
+    email: string;
+
+    @ApiProperty({
+        description: 'senha do cliente',
         type: String,
         required: true,
     })
     password: string;
-
-    // @ApiProperty({
-    //     description: 'Id do cliente',
-    //     type: String,
-    //     required: false,
-    // })
-    // clientId: string;
-
-    // @ApiProperty({
-    //     description: 'Nome do cliente',
-    //     type: String,
-    //     required: true,
-    // })
-    // name: string;
-
-    // @ApiProperty({
-    //     description: 'email do cliente',
-    //     type: String,
-    //     required: true,
-    // })
-    // email: string;
-
-    // @ApiProperty({
-    //     description: 'senha do cliente',
-    //     type: String,
-    //     required: true,
-    // })
-    // password: string;
 }

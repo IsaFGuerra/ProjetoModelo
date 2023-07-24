@@ -3,7 +3,7 @@
 //aqui ficam os @get, @posts, @delete, ....
 import { Body, Controller, Get, Injectable, Param, Post } from '@nestjs/common';
 import { ClientDTO } from '../dtos/Client.dto';
-import { ClientService } from './client.service';
+import { ClientService } from './createClient.service';
 
 
 @Controller('teste')
