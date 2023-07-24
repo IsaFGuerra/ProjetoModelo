@@ -1,14 +1,17 @@
 import { Module } from '@nestjs/common';
-import { CreateClientController } from './CreateClient.controller';
-import { PrismaModule } from 'src/prisma.module';
 import { GetClientController } from './GetClient.controller';
-import { FindClientByIdService } from './client.service';
-import { AppModule } from 'src/app.module';
+import { GetClientByIdService } from './GetClient.service';
 import { DeleteClientController } from './DeleteClient.controller';
+import { DeleteClientByIdService } from './DeleteClient.service';
+import { ClientService } from './client.service';
+import { CreateClientController } from './CreateClient.controller';
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaClient } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Module({
   imports: [PrismaModule],
-  controllers: [GetClientController, CreateClientController, DeleteClientController],
-  providers: [FindClientByIdService],
+  controllers: [GetClientController, DeleteClientController, CreateClientController],
+  providers: [GetClientByIdService, DeleteClientByIdService, ClientService, PrismaService],
 })
 export class ClientModule { }

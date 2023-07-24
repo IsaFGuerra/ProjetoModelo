@@ -1,6 +1,6 @@
 import { Body, Controller, Injectable, Post } from "@nestjs/common";
 import { PersonalDTO } from "src/dtos/Personal.dto";
-import { PrismaService } from "src/prisma.service";
+import { PrismaService } from "src/prisma/prisma.service";
 
 @Controller('/batata')
 @Injectable()

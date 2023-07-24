@@ -1,14 +1,13 @@
 import { Controller, Delete, Injectable, Param } from "@nestjs/common";
-import { PrismaService } from "src/prisma.service";
-import { FindClientByIdService } from "./client.service";
+import { DeleteClientByIdService } from "./DeleteClient.service";
 
 @Injectable()
 @Controller('/DeleteClient')
-export class DeleteClientController{
-    constructor(private readonly service: FindClientByIdService){}
+export class DeleteClientController {
+    constructor(private readonly service: DeleteClientByIdService) { }
 
     @Delete(':id')
-    async deleteClient(@Param('id') id: string){
-        const deleteClient = await this.service.DeleteClientById(id)
+    async deleteClient(@Param('id') id: string) {
+        const deleteClient = await this.service.deleteClientById(id);
     }
 }

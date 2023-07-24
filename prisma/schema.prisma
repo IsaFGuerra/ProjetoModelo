@@ -12,10 +12,12 @@ datasource db {
 }
 
 model Client {
-  clientId String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
+  clientId           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name               String
   Personal           Personal? @relation(fields: [personalPersonalId], references: [personalId])
   personalPersonalId String?   @db.ObjectId
+  email              String   @unique
+  password           String
 }
 
 model Personal {

@@ -1,30 +1,29 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma.service";
+import { Injectable } from '@nestjs/common';
+import { Client, Prisma } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
+import { PrismaService } from '../prisma/prisma.service';
+import { ClientDTO } from 'src/dtos/Client.dto';
 
 @Injectable()
-export class FindClientByIdService {
-    constructor(private readonly database: PrismaService) {}
+export class ClientService {
+  constructor(private readonly prisma: PrismaService) { }
 
-    async findClientById(name: string) {
-        const client = await this.database.client.findUnique({
-            where: {
-                name,
-            },
-            select: {
-                clientId: true,
-            },
-        });
-        return client.clientId;
-    }
+  async create(createUserDto: ClientDTO): Promise<Client> {
+    console.log('createUser', createUserDto)
+    const data: Prisma.ClientCreateInput = {
+      ...createUserDto,
+      password: await bcrypt.hash(createUserDto.password, 10),
+    };
 
-    async DeleteClientById(clientId: string){
-        const deleteClient = await this.database.client.delete({
-            where: {
-                clientId,
-            }
-        });
-        return {
-            message: 'excluido com sucesso',
-        }
-    }
+    const createdUser = await this.prisma.client.create({ data });
+
+    return {
+      ...createdUser,
+      password: undefined,
+    };
+  }
+
+  findByEmail(email: string) {
+    return this.prisma.client.findUnique({ where: { email } });
+  }
 }

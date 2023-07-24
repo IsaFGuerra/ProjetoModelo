@@ -1,27 +1,17 @@
 //classe que recebe as requisições do insomnia
 //pra ser controller precisa ter o @Controller
 //aqui ficam os @get, @posts, @delete, ....
-import { Body, Controller, Get, Injectable, Post } from '@nestjs/common';
-import { ClientDTO } from 'src/dtos/Client.dto';
-import { PrismaService } from 'src/prisma.service';
+import { Body, Controller, Get, Injectable, Param, Post } from '@nestjs/common';
+import { ClientDTO } from '../dtos/Client.dto';
+import { ClientService } from './client.service';
 
-//async significa que precisa esperar o resultado daquela função pra continuar o código
-@Controller('CreateClient')
-@Injectable()
+
+@Controller('teste')
 export class CreateClientController {
-    constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly userService: ClientService) { }
 
-    @Post()
-    async createClient(@Body() body: ClientDTO) { //isso é pra receber as informações por parâmetro
-        // console.log('oi')
-        const client = await this.prisma.client.create({
-            data: {
-                name: body.name,
-            },
-        });
-
-        return {
-            client,
-        };
-    }
+  @Post()
+  create(@Body() body: ClientDTO) {
+    return this.userService.create(body);
+  }
 }

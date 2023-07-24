@@ -1,14 +1,14 @@
 import { Controller, Get, Injectable, Query } from "@nestjs/common";
-import { FindClientByIdService } from "./client.service";
+import { GetClientByIdService } from "./GetClient.service";
 
 @Injectable()
 @Controller('GetClient')
 export class GetClientController {
-    constructor(private readonly service: FindClientByIdService) { }
+    constructor(private readonly service: GetClientByIdService) { }
 
     @Get()
     async getClient(@Query('name') name: string) {
-        const client = await this.service.findClientById(name)
+        const client = await this.service.getClientById(name)
         return client;
     }
 }
