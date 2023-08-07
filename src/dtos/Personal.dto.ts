@@ -13,7 +13,8 @@ const FormData2 = z.object({
     cpf: z.string({
         invalid_type_error: 'CPF inválido',
         required_error: 'CPF é requirido',
-    })
+    // }).min(11).max(11),
+    }),
 })
 
 export class PersonalDTO{

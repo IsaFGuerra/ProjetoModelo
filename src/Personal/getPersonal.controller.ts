@@ -1,4 +1,4 @@
-import { Controller, Get, Injectable, Query } from "@nestjs/common";
+import { Controller, Get, Injectable, Post, Query } from "@nestjs/common";
 import { GetPersonalService } from "./personal.service";
 
 @Injectable()

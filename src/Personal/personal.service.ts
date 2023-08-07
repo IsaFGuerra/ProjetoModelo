@@ -5,7 +5,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 export class GetPersonalService {
     constructor(private readonly database: PrismaService) { }
 
-    async getClientFromPersonal( namePersonal : string) {
+    async getClientFromPersonal(namePersonal : string) {
         const personal = await this.database.personal.findMany({ 
             where: {
                 namePersonal: {
