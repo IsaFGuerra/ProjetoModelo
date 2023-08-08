@@ -6,17 +6,17 @@ import path from "node:path";
 
 @Injectable()
 export class ChartService {
-    async generate(): Promise<Buffer> {
+    async generate(valor1: number, nome1: string, valor2: number, nome2: String): Promise<Buffer> {
 
-        const chart = new QuickChart();;
+        const chart = new QuickChart();
         chart.setConfig(
             {
-                type: 'bar',                                // Show a bar chart
+                type: 'bar',                        // Show a bar chart
                 data: {
-                    labels: [2012, 2013, 2014, 2015, 2016],   // Set X-axis labels
+                    labels: [nome1, nome2],                // eixo X
                     datasets: [{
-                        label: 'Users',                         // Create the 'Users' dataset
-                        data: [120, 60, 50, 180, 120]           // Add data to the chart
+                        label: 'Users',             // nome do dado na tabela
+                        data: [valor1, valor2]           // eixo Y
                     }]
                 }
             }
