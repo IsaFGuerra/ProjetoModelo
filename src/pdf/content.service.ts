@@ -10,7 +10,7 @@ export class ContentService {
 
   async content(doc: PDFKit.PDFDocument, data: Personal[]) {
     let position = 182;
-    doc.font('Helvetica-Bold').fontSize(15).text('Personal', 59, position);
+    doc.font('Helvetica-Bold').fontSize(15).text('Alemao', 59, position);
     doc.font('Helvetica-Bold')
       .fillColor('#969696')
       .fontSize(16)
