@@ -2,11 +2,12 @@ import { Personal } from "@prisma/client";
 import PDFKit from 'pdfkit';
 import { Injectable } from "@nestjs/common";
 import { GenerateHLService } from "./generateHL.service";
+import { ChartService } from "src/chart/charts.service";
 
 // export default (doc: PDFKit.PDFDocument, data: Personal[]) => {
 @Injectable()
 export class ContentService {
-  constructor(private readonly service: GenerateHLService) { }
+  constructor(private readonly service: GenerateHLService, private readonly service2: ChartService) { }
 
   async content(doc: PDFKit.PDFDocument, data: Personal[]) {
     let position = 182;
@@ -37,6 +38,8 @@ export class ContentService {
       doc.font('Helvetica').text(item.cpf, 200, position);
     }
     position = tableTop + data.length * 20 + 20;
+
+    const tabela = await this.service2.generate(1,"oi",1,"oi")
 
     const HL = await this.service.generateHL(doc, 24, 571, position)
   };

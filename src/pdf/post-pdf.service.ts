@@ -28,8 +28,10 @@ export class CreatePDFService {
     });
 
     await this.content.content(doc, personal)
-    // ContentService(doc, personal);
+
+    //caminho do projeto
     const test = 'test';
+    doc.image(path.join(__dirname, '..', '..', 'public', 'chart.png'), 50, 45, { width: 50 })
     const filepath = path.join(__dirname, '..', '..', 'public');
     if (!fs.existsSync(filepath)) fs.mkdirSync(filepath);
 
@@ -43,8 +45,4 @@ export class CreatePDFService {
 
     return `${test}.pdf`;
   }
-
-
-  // (() => {
-
 }
