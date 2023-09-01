@@ -1,5 +1,5 @@
 import { Body, Controller, Injectable, Param, Patch } from "@nestjs/common";
-import { AddClientService } from "./AddClients.service";
+import { AddClientService } from "./add-clients.service";
 
 @Injectable()
 @Controller('AddClient')

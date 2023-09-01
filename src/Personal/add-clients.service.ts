@@ -8,12 +8,12 @@ export class AddClientService {
     async addClient(personalId: string, clientId: string) {
         const clients = await this.database.personal.update({
         where: {
-            personalId,
+            id: personalId,
         },
         data: {
             client: {
                 connect: {
-                    clientId,
+                    id: clientId,
                 }
             }
         }

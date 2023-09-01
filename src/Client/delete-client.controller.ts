@@ -1,5 +1,5 @@
 import { Controller, Delete, Injectable, Param } from "@nestjs/common";
-import { DeleteClientByIdService } from "./DeleteClient.service";
+import { DeleteClientByIdService } from "./delete-client.service";
 
 @Injectable()
 @Controller('/DeleteClient')

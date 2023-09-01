@@ -1,5 +1,5 @@
 import { Controller, Get, Injectable, Param, Query } from "@nestjs/common";
-import { ClientPorPersonalService } from "./ClientePorPersonal.service";
+import { ClientPorPersonalService } from "./list-resonal-clients.service";
 
 @Injectable()
 @Controller('GetClient')

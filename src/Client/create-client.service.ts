@@ -2,29 +2,29 @@ import { Injectable } from '@nestjs/common';
 import { Client, Prisma } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
-import { ClientDTO } from 'src/dtos/Client.dto';
+import { createClientDTO, createClientZodDTO } from 'src/dtos/create-client.dto';
+import { z } from 'zod';
+
+type createClientZod = z.infer<typeof createClientZodDTO>;
 
 @Injectable()
 export class ClientService {
   constructor(private readonly prisma: PrismaService) { }
 
-  async create(createUserDto: ClientDTO): Promise<Client> {
-    // console.log('createUser', createUserDto)
+  async create(base: createClientZod): Promise<Client> {
     const data: Prisma.ClientCreateInput = {
-      ...createUserDto,
-      password: await bcrypt.hash(createUserDto.password, 10),
+      email: base.email,
+      password: await bcrypt.hash(base.password, 10),
     };
 
-    const createdUser = await this.prisma.client.create({ data });
+    const createdUser = await this.prisma.client.create({
+      data
+    });
 
     return {
       ...createdUser,
       password: 'senha secreta',
       // password: undefined,
     };
-  }
-
-  findByEmail(email: string) {
-    return this.prisma.client.findUnique({ where: { email } });
   }
 }

@@ -1,5 +1,5 @@
 import { Controller, Get, Injectable, Query } from "@nestjs/common";
-import { GetClientByIdService } from "./GetClient.service";
+import { GetClientByIdService } from "./get-client.service";
 
 @Injectable()
 @Controller('GetClient')

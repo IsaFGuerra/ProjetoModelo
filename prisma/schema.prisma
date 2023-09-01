@@ -11,18 +11,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  Client   Client[]
+  Personal Personal[]
+}
+
 model Client {
-  clientId           String    @id @default(auto()) @map("_id") @db.ObjectId
-  name               String
-  Personal           Personal? @relation(fields: [personalPersonalId], references: [personalId])
-  personalPersonalId String?   @db.ObjectId
-  email              String   @unique
-  password           String
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+
+  Personal   Personal? @relation(fields: [personalId], references: [id])
+  personalId String?   @db.ObjectId
+
+  email      String    @unique
+  password   String
 }
 
 model Personal {
-  personalId   String   @id @default(auto()) @map("_id") @db.ObjectId
-  namePersonal String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   cpf          String
   client       Client[]
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+
+  email      String    @unique
+  password   String
 }

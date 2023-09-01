@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
-import { CreatePersonalController } from './createPersonal.controller';
-import { GetPersonalService } from './personal.service';
-import { GetPersonalController } from './GetPersonal.controller';
+import { CreatePersonalController } from './create-personal.controller';
+import { GetPersonalService } from './get-personal-clients.service';
+import { GetPersonalController } from './get-personal-clients.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { GetPersonalIdService } from './getPersonalId.service';
-import { ClientPorPersonalService } from './ClientePorPersonal.service';
-import { ClientPorPersonalController } from './ClientePorPersonal.controller';
-import { AddClientService } from './AddClients.service';
-import { AddClientController } from './addClients.controller';
+import { GetPersonalIdService } from './get-personal.service';
+import { ClientPorPersonalService } from './list-resonal-clients.service';
+import { ClientPorPersonalController } from './list-personal-clients.controller';
+import { AddClientService } from './add-clients.service';
+import { AddClientController } from './add-clients.controller';
 import { ChartService } from 'src/chart/charts.service';
-import { CompararPersonalsService } from './Comparar.service';
-import { CompararPersonalsController } from './Comparar.controller';
+import { CompararPersonalsService } from './compare-personals.service';
+import { CompararPersonalsController } from './compare-personals.controller';
 
 @Module({
     imports: [PrismaModule],

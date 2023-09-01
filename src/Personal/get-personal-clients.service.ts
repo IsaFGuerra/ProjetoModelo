@@ -5,12 +5,14 @@ import { PrismaService } from "src/prisma/prisma.service";
 export class GetPersonalService {
     constructor(private readonly database: PrismaService) { }
 
-    async getClientFromPersonal(namePersonal : string) {
-        const personal = await this.database.personal.findMany({ 
+    async getClientFromPersonal(name2: string) {
+        const personal = await this.database.personal.findMany({
             where: {
-                namePersonal: {
-                    equals: namePersonal
-                },
+                User: {
+                    name: {
+                        equals: name2,
+                    }
+                }
             },
             // select: {
             //     client:{
@@ -20,7 +22,11 @@ export class GetPersonalService {
             include: {
                 client: {
                     select: {
-                        name: true
+                        User: {
+                            select: {
+                                name: true
+                            }
+                        }
                     }
                 }
             }

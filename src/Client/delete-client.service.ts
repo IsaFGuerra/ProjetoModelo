@@ -8,10 +8,11 @@ export class DeleteClientByIdService {
     async deleteClientById(clientId: string){
         const deleteClient = await this.database.client.delete({
             where: {
-                clientId,
+                id: clientId,
             }
         });
         return {
+            deleteClient,
             message: 'excluido com sucesso',
         }
     }

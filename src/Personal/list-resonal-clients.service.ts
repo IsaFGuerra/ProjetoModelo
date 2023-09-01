@@ -10,7 +10,7 @@ export class ClientPorPersonalService {
         console.log("oi")
         const clients = await this.database.client.count({
             where: {
-                personalPersonalId : personalId
+                personalId : personalId
             },
         })
         return clients
