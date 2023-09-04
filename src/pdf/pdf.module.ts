@@ -10,6 +10,6 @@ import { ChartService } from "src/chart/charts.service";
 @Module({
     imports: [PrismaModule],
     controllers: [PostPDFController],
-    providers: [PrismaService, CreatePDFService, ContentService, GenerateHLService, ChartService],
+    providers: [PrismaService, CreatePDFService, GenerateHLService, ChartService, ContentService],
 })
 export class PDFModule { }

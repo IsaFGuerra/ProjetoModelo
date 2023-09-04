@@ -6,14 +6,18 @@ export class GetPersonalIdService {
     constructor(private readonly database: PrismaService) { }
 
     async getPersonalId(personalId: string) {
-        const { namePersonal } = await this.database.personal.findFirst({
+        const nome = await this.database.personal.findFirst({
             where: {
-                personalId,
+                id: personalId,
             },
             select: {
-                namePersonal: true,
+                User:{
+                    select:{
+                        name: true,
+                    }
+                }
             }
         });
-        return namePersonal;
+        return nome.User.name;
     }
 }

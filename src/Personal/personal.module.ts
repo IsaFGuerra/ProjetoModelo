@@ -12,10 +12,11 @@ import { AddClientController } from './add-clients.controller';
 import { ChartService } from 'src/chart/charts.service';
 import { CompararPersonalsService } from './compare-personals.service';
 import { CompararPersonalsController } from './compare-personals.controller';
+import { CreatePersonalService } from './create-personal.service';
 
 @Module({
     imports: [PrismaModule],
     controllers: [CreatePersonalController, GetPersonalController, ClientPorPersonalController, AddClientController, CompararPersonalsController],
-    providers: [GetPersonalService, PrismaService, GetPersonalIdService, ClientPorPersonalService, AddClientService, ChartService, CompararPersonalsService],
+    providers: [GetPersonalService, PrismaService, GetPersonalIdService, ClientPorPersonalService, AddClientService, ChartService, CompararPersonalsService, CreatePersonalService],
 })
 export class PersonalModule { }

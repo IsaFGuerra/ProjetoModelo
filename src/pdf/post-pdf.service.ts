@@ -13,8 +13,24 @@ export class CreatePDFService {
   async createPDF(id: string) {
     const personal = await this.database.personal.findMany({
       where: {
-        personalId: id,
+        id: id,
+      },
+      select: {
+        cpf: true,
+        User: {
+          select: {
+            name: true,
+          }
+        },
+        id: true,
       }
+      // include: {
+      //   User: {
+      //     select: {
+      //       name: true,
+      //     }
+      //   }
+      // }
     })
     const doc = new PDFDocument({
       size: 'A4',
@@ -27,7 +43,7 @@ export class CreatePDFService {
       },
     });
 
-    await this.content.content(doc, personal)
+    // await this.content.content(doc, personal)
 
     //caminho do projeto
     const test = 'test';
